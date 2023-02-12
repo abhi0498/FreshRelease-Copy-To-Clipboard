@@ -41,7 +41,7 @@ export function run() {
         newElement.classList.add("text--sec-color")
         newElement.classList.add("text--ultra-semibold")
         newElement.classList.add("material-symbols-outlined")
-        newElement.onclick = () => {
+        newElement.onclick = async () => {
           const listOfTasks =
             element.parentElement.nextElementSibling.children[0].children || []
           console.log(listOfTasks)
@@ -59,7 +59,8 @@ export function run() {
             tasks.push(`${texts[0]} - ${texts[1]}` + (name ? ` - ${name}` : ""))
           }
           try {
-            window.navigator.clipboard.writeText(tasks.join("\n"))
+            console.log(tasks.join("\n"))
+            await window.navigator.clipboard.writeText(tasks.join("\n"))
             alert("Copied to clipboard")
           } catch (error) {
             console.log(error)
